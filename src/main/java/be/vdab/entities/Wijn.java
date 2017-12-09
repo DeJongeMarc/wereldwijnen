@@ -15,16 +15,18 @@ import javax.persistence.Version;
 @Table(name = "wijnen")
 public class Wijn implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_BY_SOORT = "Wijn.findBySoort";
 
 	@Id
 	private long id;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "soortid")
+	private Soort soort;
 	private int jaar;
 	private int beoordeling;
 	private BigDecimal prijs;
 	private int inBestelling;
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "soortid")
-	private Soort soort;
 	@Version
 	private long versie;
 
@@ -32,6 +34,9 @@ public class Wijn implements Serializable {
 		return id;
 	}
 
+	public Soort getSoort() {
+		return soort;
+	}
 	public int getJaar() {
 		return jaar;
 	}
@@ -47,9 +52,37 @@ public class Wijn implements Serializable {
 	public int getInBestelling() {
 		return inBestelling;
 	}
+	
+	public void incrementInBestelling(int aantal) {
+		inBestelling += aantal;
+	}
 
-	public Soort getSoort() {
-		return soort;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + jaar;
+		result = prime * result + ((soort == null) ? 0 : soort.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Wijn))
+			return false;
+		Wijn other = (Wijn) obj;
+		if (jaar != other.jaar)
+			return false;
+		if (soort == null) {
+			if (other.soort != null)
+				return false;
+		} else if (!soort.equals(other.soort))
+			return false;
+		return true;
 	}
 
 }

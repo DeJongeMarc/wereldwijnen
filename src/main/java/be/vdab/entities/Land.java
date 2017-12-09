@@ -15,6 +15,8 @@ import javax.persistence.Version;
 @Table(name = "landen")
 public class Land implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_ALL = "Land.findAll";
 
 	@Id
 	private long id;

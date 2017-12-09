@@ -17,6 +17,8 @@ import javax.persistence.Version;
 @Table(name = "soorten")
 public class Soort implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_BY_LAND = "Soort.findByLand";
 
 	@Id
 	private long id;

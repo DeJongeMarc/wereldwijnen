@@ -2,6 +2,8 @@ package be.vdab.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
@@ -38,11 +40,12 @@ public class Bestelbon implements Serializable {
 	@Version
 	private long versie;
 
-	public Bestelbon(LocalDateTime besteld, String naam, Adres adres, Bestelwijze bestelwijze) {
-		setBesteld(besteld);
+	public Bestelbon(String naam, Adres adres, Bestelwijze bestelwijze) {
+		besteld = LocalDateTime.now();
 		setNaam(naam);
 		setAdres(adres);
 		setBestelwijze(bestelwijze);
+		bestelbonlijnen = new ArrayList<>();
 	}
 
 	protected Bestelbon() {
@@ -67,6 +70,10 @@ public class Bestelbon implements Serializable {
 	public Bestelwijze getBestelwijze() {
 		return bestelwijze;
 	}
+	
+	public List<Bestelbonlijn> getBestelbonlijnen() {
+		return Collections.unmodifiableList(bestelbonlijnen);
+	}
 
 	public void setBesteld(LocalDateTime besteld) {
 		this.besteld = besteld;
@@ -82,6 +89,35 @@ public class Bestelbon implements Serializable {
 
 	public void setBestelwijze(Bestelwijze bestelwijze) {
 		this.bestelwijze = bestelwijze;
+	}
+	
+	public void add(Bestelbonlijn bestelbonlijn) {
+		bestelbonlijnen.add(bestelbonlijn);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bestelbonlijnen == null) ? 0 : bestelbonlijnen.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Bestelbon))
+			return false;
+		Bestelbon other = (Bestelbon) obj;
+		if (bestelbonlijnen == null) {
+			if (other.bestelbonlijnen != null)
+				return false;
+		} else if (!bestelbonlijnen.equals(other.bestelbonlijnen))
+			return false;
+		return true;
 	}
 
 }

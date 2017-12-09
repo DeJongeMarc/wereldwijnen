@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -13,20 +14,35 @@ import be.vdab.entities.Wijn;
 public class Bestelbonlijn implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private int aantal;
-	private BigDecimal prijs;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "wijnid")
 	private Wijn wijn;
+	private int aantal;
+	private BigDecimal aankoopPrijs;
 	
-	public int getAantal() {
-		return aantal;
+	public Bestelbonlijn(Wijn wijn, int aantal, BigDecimal prijs) {
+		this.wijn = wijn;
+		this.aantal = aantal;
+		aankoopPrijs = prijs;
 	}
-	public BigDecimal getPrijs() {
-		return prijs;
+	
+	protected Bestelbonlijn() {
 	}
+
 	public Wijn getWijn() {
 		return wijn;
 	}
+
+	public int getAantal() {
+		return aantal;
+	}
+
+	public BigDecimal getPrijs() {
+		return aankoopPrijs;
+	}
 	
+	public BigDecimal getSubTotaal() {
+		return aankoopPrijs.multiply(BigDecimal.valueOf(aantal));
+	}
+
 }

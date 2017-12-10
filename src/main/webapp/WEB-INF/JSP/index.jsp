@@ -5,9 +5,19 @@
 <html lang='nl'>
 <v:head title='Wereldwijnen' />
 <body>
-	<header>
-		<h1>Wereldwijnen</h1>
-		<img src='<c:url value="/images/intro.jpg"/>' alt='wereldwijnen' id='intro' />
-	</header>
+	<v:menu />
+	<label><span>${fouten.land}</span></label>
+	<c:if test="${not empty land}">
+		<h2>Soorten uit ${land.naam}</h2>
+		<ul>
+			<c:forEach items="${land.soorten}" var="landSoort">
+				<li ${landSoort.naam}><c:url
+						value='/index.htm' var='indexURL'>
+						<c:param name='landId' value='${land.id}' />
+						<c:param name='soortId' value='${landSoort.id}' />
+					</c:url> <a href='${indexURL}'> ${landSoort.naam} </a></li>
+			</c:forEach>
+		</ul>
+	</c:if>
 </body>
 </html>

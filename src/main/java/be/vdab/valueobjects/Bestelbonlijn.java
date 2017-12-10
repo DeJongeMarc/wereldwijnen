@@ -3,6 +3,7 @@ package be.vdab.valueobjects;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -18,6 +19,7 @@ public class Bestelbonlijn implements Serializable {
 	@JoinColumn(name = "wijnid")
 	private Wijn wijn;
 	private int aantal;
+	@Column(name = "prijs")
 	private BigDecimal aankoopPrijs;
 	
 	public Bestelbonlijn(Wijn wijn, int aantal, BigDecimal prijs) {

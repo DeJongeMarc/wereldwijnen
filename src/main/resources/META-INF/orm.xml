@@ -7,7 +7,7 @@
 	<named-query name='Land.findAll'>
 		<query>
 			select l from Land l
-			order by l.naam, l.id
+			order by l.naam
 		</query>
 	</named-query>
 	<named-query name='Soort.findByLand'>

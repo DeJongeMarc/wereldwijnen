@@ -1,6 +1,7 @@
 package be.vdab.entities;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -42,6 +43,10 @@ public class Soort implements Serializable {
 
 	public Land getLand() {
 		return land;
+	}
+	
+	public Set<Wijn> getWijnen() {
+		return Collections.unmodifiableSet(wijnen);
 	}
 
 	@Override

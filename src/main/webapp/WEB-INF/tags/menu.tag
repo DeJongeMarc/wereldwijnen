@@ -11,8 +11,8 @@
 					src='images/${land.id}.png'></a></li>
 		</c:forEach>
 	</ul>
-	<c:if test='${not empty winkelmandje}'>
-		<a href='<c:url value='/winkelmandje.htm'/>'>
-		<img alt='winkelmandje' src='images/mandje.png'></a>
+	<c:if test='${not empty mandje}'>
+		<a href='<c:url value='/mandje.htm'/>'>
+		<img alt='mandje' src='images/mandje.png'></a>
 	</c:if>
 </nav>

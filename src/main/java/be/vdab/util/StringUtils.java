@@ -7,7 +7,19 @@ public class StringUtils {
 		try {
 			Long.parseLong(string);
 			return true;
-		} catch (NumberFormatException ex) {
+		} catch (NullPointerException | NumberFormatException ex) {
+			return false;
+		}
+	}
+	
+	public static boolean isGeldigAantal(String string) {
+		try {
+			int getal = Integer.parseInt(string);
+			if (getal <= 0) {
+				return false;
+			}
+			return true;
+		} catch (NullPointerException | NumberFormatException ex) {
 			return false;
 		}
 	}

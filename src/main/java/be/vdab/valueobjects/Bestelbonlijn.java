@@ -22,10 +22,10 @@ public class Bestelbonlijn implements Serializable {
 	@Column(name = "prijs")
 	private BigDecimal aankoopPrijs;
 	
-	public Bestelbonlijn(Wijn wijn, int aantal, BigDecimal prijs) {
+	public Bestelbonlijn(Wijn wijn, int aantal) {
 		this.wijn = wijn;
 		this.aantal = aantal;
-		aankoopPrijs = prijs;
+		aankoopPrijs = wijn.getPrijs();
 	}
 	
 	protected Bestelbonlijn() {
@@ -39,7 +39,7 @@ public class Bestelbonlijn implements Serializable {
 		return aantal;
 	}
 
-	public BigDecimal getPrijs() {
+	public BigDecimal getAankoopPrijs() {
 		return aankoopPrijs;
 	}
 	

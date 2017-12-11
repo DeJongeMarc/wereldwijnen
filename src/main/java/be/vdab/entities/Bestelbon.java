@@ -2,7 +2,6 @@ package be.vdab.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import be.vdab.enums.Bestelwijze;
 import be.vdab.valueobjects.Adres;
 import be.vdab.valueobjects.Bestelbonlijn;
 
@@ -33,19 +31,19 @@ public class Bestelbon implements Serializable {
 	private String naam;
 	@Embedded
 	private Adres adres;
-	private Bestelwijze bestelwijze;
+	private int bestelwijze;
 	@ElementCollection
 	@CollectionTable(name = "bestelbonlijnen", joinColumns = @JoinColumn(name = "bonid"))
 	private List<Bestelbonlijn> bestelbonlijnen;
 	@Version
 	private long versie;
 
-	public Bestelbon(String naam, Adres adres, Bestelwijze bestelwijze) {
+	public Bestelbon(String naam, Adres adres, int bestelwijze, List<Bestelbonlijn> bestelbonlijnen) {
 		besteld = LocalDateTime.now();
 		setNaam(naam);
 		setAdres(adres);
 		setBestelwijze(bestelwijze);
-		bestelbonlijnen = new ArrayList<>();
+		this.bestelbonlijnen = bestelbonlijnen;
 	}
 
 	protected Bestelbon() {
@@ -67,7 +65,7 @@ public class Bestelbon implements Serializable {
 		return adres;
 	}
 
-	public Bestelwijze getBestelwijze() {
+	public int getBestelwijze() {
 		return bestelwijze;
 	}
 	
@@ -87,7 +85,7 @@ public class Bestelbon implements Serializable {
 		this.adres = adres;
 	}
 
-	public void setBestelwijze(Bestelwijze bestelwijze) {
+	public void setBestelwijze(int bestelwijze) {
 		this.bestelwijze = bestelwijze;
 	}
 	

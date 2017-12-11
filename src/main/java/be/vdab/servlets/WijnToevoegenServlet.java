@@ -2,7 +2,6 @@ package be.vdab.servlets;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -26,7 +25,6 @@ public class WijnToevoegenServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Map<String, String> fouten = new HashMap<>();
 		String gekozenWijnString = request.getParameter("wijnId");
 		if (StringUtils.isLong(gekozenWijnString)) {
 			long gekozenWijn = Long.parseLong(gekozenWijnString);
@@ -42,7 +40,6 @@ public class WijnToevoegenServlet extends HttpServlet {
 		} else {
 			request.setAttribute("fouten", Collections.singletonMap("wijn", "Gekozen wijn bestaat niet."));
 		}
-		request.setAttribute("fouten", fouten);
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
 

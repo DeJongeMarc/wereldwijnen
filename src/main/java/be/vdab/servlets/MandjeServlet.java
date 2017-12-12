@@ -20,7 +20,11 @@ import be.vdab.services.WijnService;
 import be.vdab.util.StringUtils;
 import be.vdab.valueobjects.Adres;
 import be.vdab.valueobjects.Bestelbonlijn;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 @WebServlet("/mandje.htm")
 public class MandjeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

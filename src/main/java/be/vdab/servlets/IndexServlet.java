@@ -12,7 +12,11 @@ import javax.servlet.http.HttpSession;
 import be.vdab.services.LandService;
 import be.vdab.services.SoortService;
 import be.vdab.util.StringUtils;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 @WebServlet("/index.htm")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

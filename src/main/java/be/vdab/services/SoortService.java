@@ -4,7 +4,11 @@ import java.util.Optional;
 
 import be.vdab.entities.Soort;
 import be.vdab.repositories.SoortRepository;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 public class SoortService extends AbstractService {
 
 	private final SoortRepository soortRepository = new SoortRepository();

@@ -6,7 +6,11 @@ import javax.persistence.PersistenceException;
 
 import be.vdab.entities.Wijn;
 import be.vdab.repositories.WijnRepository;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 public class WijnService extends AbstractService{
 	
 	private final WijnRepository wijnRepository = new WijnRepository();

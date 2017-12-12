@@ -14,7 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import be.vdab.services.WijnService;
 import be.vdab.util.StringUtils;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 @WebServlet("/wijn/toevoegen.htm")
 public class WijnToevoegenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

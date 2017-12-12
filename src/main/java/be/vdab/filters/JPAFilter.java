@@ -12,7 +12,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 @WebFilter("*.htm")
 public class JPAFilter implements Filter {
 	private static final EntityManagerFactory entityManagerFactory = Persistence

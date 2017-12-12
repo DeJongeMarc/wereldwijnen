@@ -1,5 +1,9 @@
 package be.vdab.util;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 public class StringUtils {
 	public static boolean isLong(String string) {
 		try {

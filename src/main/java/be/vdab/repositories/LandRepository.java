@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import be.vdab.entities.Land;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 public class LandRepository extends AbstractRepository {
 	
 	public Optional<Land> read(long id) {

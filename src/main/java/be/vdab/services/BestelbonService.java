@@ -6,7 +6,11 @@ import javax.persistence.PersistenceException;
 
 import be.vdab.entities.Bestelbon;
 import be.vdab.repositories.BestelbonRepository;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 public class BestelbonService extends AbstractService {
 
 	private final BestelbonRepository bestelbonRepository = new BestelbonRepository();

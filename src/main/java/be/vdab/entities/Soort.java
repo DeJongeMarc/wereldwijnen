@@ -13,7 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Version;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 @Entity
 @Table(name = "soorten")
 public class Soort implements Serializable {

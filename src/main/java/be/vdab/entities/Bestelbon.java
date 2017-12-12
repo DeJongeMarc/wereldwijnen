@@ -1,6 +1,7 @@
 package be.vdab.entities;
 
 import java.io.Serializable;
+
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -18,6 +19,12 @@ import javax.persistence.Version;
 
 import be.vdab.valueobjects.Adres;
 import be.vdab.valueobjects.Bestelbonlijn;
+
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 
 @Entity
 @Table(name = "bestelbonnen")

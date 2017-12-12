@@ -5,7 +5,11 @@ import java.util.Optional;
 
 import be.vdab.entities.Land;
 import be.vdab.repositories.LandRepository;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 public class LandService extends AbstractService {
 	
 	private final LandRepository landRepository = new LandRepository();

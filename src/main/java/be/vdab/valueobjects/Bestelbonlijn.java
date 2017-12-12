@@ -10,7 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import be.vdab.entities.Wijn;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 @Embeddable
 public class Bestelbonlijn implements Serializable {
 	private static final long serialVersionUID = 1L;

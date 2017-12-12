@@ -10,7 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
-
+/**
+ * 
+ * @author marc.de.jonge
+ *
+ */
 @Entity
 @Table(name = "wijnen")
 public class Wijn implements Serializable {

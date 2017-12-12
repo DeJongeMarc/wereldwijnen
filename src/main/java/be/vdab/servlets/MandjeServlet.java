@@ -25,7 +25,7 @@ import be.vdab.valueobjects.Bestelbonlijn;
 public class MandjeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static final String VIEW = "/WEB-INF/JSP/mandje.jsp";
-	private static final String REDIRECT_URL = "%s/bevestigd.htm";
+	private static final String REDIRECT_URL = "%s/bevestiging.htm";
 	private static final String MANDJE = "mandje";
 	private static final String BEVESTIGD_BON_ID = "bevestigdBonId";
 	private final transient WijnService wijnService = new WijnService();
@@ -103,8 +103,8 @@ public class MandjeServlet extends HttpServlet {
 				Map<Long, Integer> mandje = (Map<Long, Integer>) session.getAttribute(MANDJE);
 				if (mandje != null) {
 					List<Bestelbonlijn> bestelbonlijnen = new ArrayList<>();
-					mandje.keySet().stream().forEach(wijnid -> bestelbonlijnen
-							.add(new Bestelbonlijn(wijnService.read(wijnid).get(), mandje.get(wijnid))));
+					mandje.keySet().stream().forEach(wijnId -> bestelbonlijnen
+							.add(new Bestelbonlijn(wijnService.read(wijnId).get(), mandje.get(wijnId))));
 					Adres adres = new Adres(straat, huisnummer, postcode, gemeente);
 					int bestelwijzeInt = Integer.parseInt(bestelwijze);
 					Long bonId = bestelbonService

@@ -14,10 +14,10 @@ import be.vdab.entities.Bestelbon;
 import be.vdab.services.BestelbonService;
 import be.vdab.services.WijnService;
 
-@WebServlet("/bevestigd.htm")
-public class BevestigdServlet extends HttpServlet {
+@WebServlet("/bevestiging.htm")
+public class BevestigingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String VIEW = "/WEB-INF/JSP/bevestigd.jsp";
+	private static final String VIEW = "/WEB-INF/JSP/bevestiging.jsp";
 	private static final String BEVESTIGD_BON_ID = "bevestigdBonId";
 
 	@Override

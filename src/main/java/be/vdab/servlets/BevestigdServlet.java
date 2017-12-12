@@ -19,26 +19,19 @@ public class BevestigdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/bevestigd.jsp";
 	private static final String BEVESTIGD_BON_ID = "bevestigdBonId";
-	private final transient BestelbonService bestelbonService = new BestelbonService();
-	private final transient WijnService wijnService = new WijnService();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		try {
+		if (session != null) {
 			Long bonid = (Long) session.getAttribute(BEVESTIGD_BON_ID);
-			Bestelbon bestelbon = bestelbonService.read(bonid.longValue()).get();
-			bestelbon.getBestelbonlijnen().stream()
-					.forEach(lijn -> wijnService.incrementInBestelling(lijn.getWijn().getId(), lijn.getAantal()));
-			request.setAttribute("status", String.format("Uw mandje is bevestigd als bestelbon %d", bestelbon.getId()));
-			session.invalidate();
-		} catch (NullPointerException | NoSuchElementException ex) {
-			request.setAttribute("status", "Uw mandje kon niet als bestelling worden bevestigd");
+			if (bonid != null) {
+				request.setAttribute("bevestigdBonId", bonid);
+				session.invalidate();
+			}
 		}
-		request.setAttribute("home", "index.htm");
 		request.getRequestDispatcher(VIEW).forward(request, response);
-
 	}
 
 }

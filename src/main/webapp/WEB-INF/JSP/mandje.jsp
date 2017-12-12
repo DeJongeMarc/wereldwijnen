@@ -1,7 +1,6 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
-<%@taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@taglib prefix="v" uri="http://vdab.be/tags"%>
-<%@taglib uri='http://java.sun.com/jsp/jstl/fmt' prefix='fmt'%>
 <!doctype html>
 <html lang='nl'>
 <v:head title="Mandje"/>
@@ -22,7 +21,7 @@
 				<tbody>
 						<c:forEach items='${bestelbonlijnen}' var='lijn'>
 							<tr>
-								<td>${lijn.wijn.soort.land.naam}${lijn.wijn.soort.naam}
+								<td>${lijn.wijn.soort.land.naam} ${lijn.wijn.soort.naam}
 									${lijn.wijn.jaar}</td>
 								<td>${lijn.aankoopPrijs}</td>
 								<td>${lijn.aantal}</td>
@@ -42,7 +41,7 @@
 					type='text' name='huisnummer' value='${huisnummer}'></label> <label>Postcode<span>${fouten.postcode}</span><input
 					type='text' name='postcode' value='${postcode}'></label> <label>Gemeente<span>${fouten.gemeente}</span><input
 					type='text' name='gemeente' value='${gemeente}'></label> <label><span>${fouten.bestelwijze}</span><input
-					type='radio' name='bestelwijze' value='0' checked>Afhalen</label> <label><input
+					type='radio' name='bestelwijze' value='0' checked> Afhalen</label> <label><input
 					type='radio' name='bestelwijze' value='1'>Opsturen</label> <input
 					type='submit' value='Als bestelbon bevestigen' id='bestelknop'>
 			</form>

@@ -3,7 +3,6 @@ package be.vdab.servlets;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,12 +48,8 @@ public class MandjeServlet extends HttpServlet {
 					totaal = totaal.add(eenLijn.getSubTotaal());
 				}
 				request.setAttribute("totaal", totaal);
-			} else {
-				request.setAttribute("fouten", Collections.singletonMap("mandje", "Mandje is leeg!"));
-			}
-		} else {
-			request.setAttribute("fouten", Collections.singletonMap("mandje", "Mandje is leeg!"));
-		}
+			} 
+		} 
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
 
@@ -65,29 +60,41 @@ public class MandjeServlet extends HttpServlet {
 		String naam = request.getParameter("naam");
 		if (!StringUtils.isGeldigString(naam)) {
 			fouten.put("naam", "Naam niet ingevuld!");
+			naam="";
 		}
 		String straat = request.getParameter("straat");
 		if (!StringUtils.isGeldigString(straat)) {
 			fouten.put("straat", "straat niet ingevuld!");
+			straat="";
 		}
 		String huisnummer = request.getParameter("huisnummer");
 		if (!StringUtils.isGeldigString(huisnummer)) {
 			fouten.put("huisnummer", "huisnummer niet ingevuld!");
+			huisnummer="";
 		}
 		String postcode = request.getParameter("postcode");
 		if (!StringUtils.isGeldigString(postcode)) {
 			fouten.put("postcode", "postcode niet ingevuld!");
+			postcode="";
 		}
 		String gemeente = request.getParameter("gemeente");
 		if (!StringUtils.isGeldigString(gemeente)) {
 			fouten.put("gemeente", "gemeente niet ingevuld!");
+			gemeente="";
 		}
 		String bestelwijze = request.getParameter("bestelwijze");
 		if (!StringUtils.isGeldigBestelwijze(bestelwijze)) {
 			fouten.put("bestelwijze", "geen geldige bestelwijze");
+			bestelwijze=null;
 		}
 		if (!fouten.isEmpty()) {
 			request.setAttribute("fouten", fouten);
+			request.setAttribute("naam", naam);
+			request.setAttribute("straat", straat);
+			request.setAttribute("huisnummer", huisnummer);
+			request.setAttribute("postcode", postcode);
+			request.setAttribute("gemeente", gemeente);
+			request.setAttribute("bestelwijze", bestelwijze);
 			doGet(request, response);
 		} else {
 			HttpSession session = request.getSession(false);
@@ -102,13 +109,15 @@ public class MandjeServlet extends HttpServlet {
 					int bestelwijzeInt = Integer.parseInt(bestelwijze);
 					Long bonId = bestelbonService
 							.createBestelbon(new Bestelbon(naam, adres, bestelwijzeInt, bestelbonlijnen));
+					Bestelbon bestelbon = bestelbonService.read(bonId).get();
+					bestelbon.getBestelbonlijnen().stream()
+							.forEach(lijn -> wijnService.incrementInBestelling(lijn.getWijn().getId(), lijn.getAantal()));
 					request.getSession().setAttribute(BEVESTIGD_BON_ID, bonId);
 					response.sendRedirect(
 							response.encodeRedirectURL(String.format(REDIRECT_URL, request.getContextPath())));
 				}
 			} else {
-				response.sendRedirect(
-						response.encodeRedirectURL(String.format(REDIRECT_URL, request.getContextPath())));
+				request.getRequestDispatcher(VIEW).forward(request, response);
 			}
 		}
 

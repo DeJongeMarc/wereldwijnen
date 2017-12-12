@@ -40,9 +40,9 @@ public class Bestelbon implements Serializable {
 
 	public Bestelbon(String naam, Adres adres, int bestelwijze, List<Bestelbonlijn> bestelbonlijnen) {
 		besteld = LocalDateTime.now();
-		setNaam(naam);
-		setAdres(adres);
-		setBestelwijze(bestelwijze);
+		this.naam = naam;
+		this.adres = adres;
+		this.bestelwijze = bestelwijze;
 		this.bestelbonlijnen = bestelbonlijnen;
 	}
 
@@ -71,26 +71,6 @@ public class Bestelbon implements Serializable {
 	
 	public List<Bestelbonlijn> getBestelbonlijnen() {
 		return Collections.unmodifiableList(bestelbonlijnen);
-	}
-
-	public void setBesteld(LocalDateTime besteld) {
-		this.besteld = besteld;
-	}
-
-	public void setNaam(String naam) {
-		this.naam = naam;
-	}
-
-	public void setAdres(Adres adres) {
-		this.adres = adres;
-	}
-
-	public void setBestelwijze(int bestelwijze) {
-		this.bestelwijze = bestelwijze;
-	}
-	
-	public void add(Bestelbonlijn bestelbonlijn) {
-		bestelbonlijnen.add(bestelbonlijn);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package be.vdab.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.PersistenceException;
@@ -16,14 +15,10 @@ public class WijnService extends AbstractService{
 		return wijnRepository.read(id);
 	}
 
-	public List<Wijn> findBySoort(long soortid) {
-		return wijnRepository.findBySoort(soortid);
-	}
-
 	public void incrementInBestelling(long id, int aantal) {
 		try {
 			beginTransaction();
-			wijnRepository.read(id).ifPresent(wijn -> wijn.incrementInBestelling(aantal));
+			wijnRepository.read(id).ifPresent(wijn -> wijn.verhoogInBestelling(aantal));
 			commit();
 		} catch (PersistenceException ex) {
 			rollback();

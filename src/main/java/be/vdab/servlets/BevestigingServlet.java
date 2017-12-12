@@ -1,7 +1,6 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.util.NoSuchElementException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import be.vdab.entities.Bestelbon;
-import be.vdab.services.BestelbonService;
-import be.vdab.services.WijnService;
 
 @WebServlet("/bevestiging.htm")
 public class BevestigingServlet extends HttpServlet {
@@ -25,9 +20,9 @@ public class BevestigingServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
-			Long bonid = (Long) session.getAttribute(BEVESTIGD_BON_ID);
-			if (bonid != null) {
-				request.setAttribute("bevestigdBonId", bonid);
+			Long bonId = (Long) session.getAttribute(BEVESTIGD_BON_ID);
+			if (bonId != null) {
+				request.setAttribute("bevestigdBonId", bonId);
 				session.invalidate();
 			}
 		}

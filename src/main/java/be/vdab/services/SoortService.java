@@ -1,6 +1,5 @@
 package be.vdab.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import be.vdab.entities.Soort;
@@ -12,10 +11,6 @@ public class SoortService extends AbstractService {
 
 	public Optional<Soort> read(long id) {
 		return soortRepository.read(id);
-	}
-
-	public List<Soort> findByLand(long landid) {
-		return soortRepository.findByLand(landid);
 	}
 
 }

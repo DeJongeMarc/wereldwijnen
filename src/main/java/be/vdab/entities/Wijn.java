@@ -53,7 +53,7 @@ public class Wijn implements Serializable {
 		return inBestelling;
 	}
 	
-	public void incrementInBestelling(int aantal) {
+	public void verhoogInBestelling(int aantal) {
 		inBestelling += aantal;
 	}
 

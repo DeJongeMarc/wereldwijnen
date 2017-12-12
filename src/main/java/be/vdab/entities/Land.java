@@ -64,6 +64,4 @@ public class Land implements Serializable {
 		return true;
 	}
 
-	
-
 }
